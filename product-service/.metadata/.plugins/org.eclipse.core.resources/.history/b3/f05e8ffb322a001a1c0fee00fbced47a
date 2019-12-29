@@ -1,0 +1,31 @@
+package com.radhe.product;
+
+import com.radhe.product.controller.Controller;
+import com.radhe.product.logger.AppLogger;
+import com.radhe.product.controller.ProuctController;
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+ 
+	private static AppLogger log=AppLogger.getLogger();
+    public static void main( String[] args )
+    {
+    	log.debug("### START APP ###");
+    	
+    	registerController();
+    	
+
+    }
+	private static void registerController() {
+		
+		ControllerRepository controllerRepository=new ControllerRepository();
+		
+	
+		controllerRepository.registerController("/product", new ProuctController());
+		
+ 		
+	}
+}

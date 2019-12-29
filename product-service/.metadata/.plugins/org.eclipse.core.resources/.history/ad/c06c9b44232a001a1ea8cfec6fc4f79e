@@ -1,0 +1,8 @@
+package com.radhe.product.model;
+
+public class Product {
+	long prodId;
+	String prodName;
+	double prodPrice;
+
+}

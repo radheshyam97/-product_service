@@ -1,0 +1,7 @@
+package com.radhe.product.controller;
+
+public interface Controller {
+	
+	public String processRequest(String data)  ;
+
+}

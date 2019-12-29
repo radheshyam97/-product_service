@@ -1,0 +1,108 @@
+package com.radhe.product.controller;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpRequest;
+import org.apache.http.HttpResponse;
+import org.apache.http.RequestLine;
+import org.apache.http.message.BasicHttpEntityEnclosingRequest;
+import org.apache.http.protocol.HttpContext;
+
+import com.radhe.product.constants.Constants;
+import com.radhe.product.logger.AppLogger;
+import com.radhe.product.model.RequestVO;
+import com.radhe.product.model.ResponseVO;
+import com.radhe.product.model.anno.GET;
+
+public class GenericController implements Controller {
+	AppLogger log = AppLogger.getLogger(GenericController.class);
+
+	@Override
+	public ResponseVO processRequest(HttpRequest httpRequest, HttpResponse httpResponse, HttpContext context) {
+ 		try {
+			String content = getContent(httpRequest);
+			log.debug("Received Request: " + content);
+
+		  ResponseVO responseVO = callBusinessMethod(httpRequest);
+		  return responseVO;
+
+ 		} catch (Exception ex) {
+
+			ex.printStackTrace();
+		}
+ 
+		return null;
+	}
+
+	private String getContent(HttpRequest httpRequest) throws IOException {
+
+		BasicHttpEntityEnclosingRequest newReq = (BasicHttpEntityEnclosingRequest) httpRequest;
+		HttpEntity entity = newReq.getEntity();
+		InputStream inputStream = entity.getContent();
+
+		StringBuffer sb = new StringBuffer();
+		BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+		String data = null;
+
+		while ((data = br.readLine()) != null) {
+			sb.append(data);
+		}
+
+		return data;
+	}
+
+	private ResponseVO callBusinessMethod(HttpRequest httpRequest) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		RequestLine requestLine = httpRequest.getRequestLine();
+		String httpMethod = requestLine.getMethod();
+
+		if (Constants.HTTP_METHOD_GET.equalsIgnoreCase(httpMethod)) {
+			
+ 		} else if (Constants.HTTP_METHOD_GET.equalsIgnoreCase(httpMethod))
+
+		{
+			// Call post
+		} else if (Constants.HTTP_METHOD_GET.equalsIgnoreCase(httpMethod)) {
+
+			// call put method
+		} else if (Constants.HTTP_METHOD_GET.equalsIgnoreCase(httpMethod)) {
+			// call delete method
+		}
+
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private ResponseVO callMethod(Method method) throws IllegalAccessException, InvocationTargetException {
+		method.setAccessible(true);
+		RequestVO requestVO=new RequestVO();
+		ResponseVO responseVO=(ResponseVO) method.invoke(this, requestVO);
+		return responseVO;
+	}
+
+	private List<Method> getMethod(Class annotationType) {
+		List<Method> methodList=new ArrayList<>();
+		Method[] methods = this.getClass().getMethods();
+		for (Method method : methods) {
+			if (method.isAnnotationPresent(annotationType)) {
+				methodList.add(method);
+			}
+
+		}//
+		return methodList;
+	}
+	
+	private ResponseVO prepareResponse(int type,String msg){
+		ResponseVO responseVO = new ResponseVO();
+		responseVO.setResponseType(type);
+		responseVO.setResponseMsg(msg);
+		return responseVO;
+	}
+}

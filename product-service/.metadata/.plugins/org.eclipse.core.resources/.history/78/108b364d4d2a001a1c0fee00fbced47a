@@ -1,0 +1,49 @@
+package com.radhe.product.util;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.radhe.product.model.Product;
+
+public class MessageHelper {
+
+//	public static Object jsonToObj(String data, Class clazz) throws JsonMappingException, JsonProcessingException {
+//		ObjectMapper mapper = new ObjectMapper();
+//		return mapper.readValue(data, clazz);
+//	}
+//
+//	public static String objTojson(Object obj) throws JsonProcessingException {
+//		ObjectMapper mapper = new ObjectMapper();
+//		return mapper.writeValueAsString(obj);
+//	}
+
+	public static <T> T jsonToObj(String content, Class<T> clazz) throws JsonMappingException, JsonProcessingException {
+			ObjectMapper mapper=new ObjectMapper();
+			T obj = mapper.readValue(content, clazz);
+			return obj;
+	}
+		
+	
+	public static <T> String objToJson(T t) throws JsonMappingException, JsonProcessingException {
+		ObjectMapper mapper=new ObjectMapper();
+		String valueAsString = mapper.writeValueAsString(t);
+		return valueAsString;
+		
+}
+	public static void main(String[] args) throws JsonMappingException, JsonProcessingException {
+		
+		Product p=new Product();
+		p.setProdId(101);
+		p.setProdName("Bull");
+		p.setProdPrice(100002);
+		String objToJson = objToJson(p);
+		System.out.println("objToJson: "+objToJson);
+		//
+		String contect="{\"product_id\":102,\"product_name\":\"TB\",\"product_price\":500002.0}";
+		jsonToObj(content, Product.cls)
+		
+		
+		
+	}
+
+}

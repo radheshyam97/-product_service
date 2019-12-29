@@ -1,0 +1,8 @@
+package com.radhe.product.model;
+
+public class RequestVO {
+	
+	private String requestURI;
+	private String requestData;
+
+}

@@ -1,0 +1,82 @@
+package com.radhe.product.controller.bizz;
+
+import java.util.List;
+
+import com.radhe.product.constants.Constants;
+import com.radhe.product.controller.GenericController;
+import com.radhe.product.logger.AppLogger;
+import com.radhe.product.model.Product;
+import com.radhe.product.model.RequestVO;
+import com.radhe.product.model.ResponseVO;
+import com.radhe.product.model.anno.GET;
+import com.radhe.product.model.anno.POST;
+import com.radhe.product.services.ProductService;
+import com.radhe.product.util.MessageHelper;
+
+public class ProductController extends GenericController {
+
+	private static AppLogger log = AppLogger.getLogger(ProductController.class);
+
+	@POST
+	public ResponseVO insertProduct(RequestVO requestVO) {
+
+		log.info("Method: insertProduct()");
+		ResponseVO responseVO = new ResponseVO();
+		try {
+			ProductService service = getProductServer();
+			log.info("responseVO.getResponseMsg(): " + requestVO.getRequestData());
+			Product product = MessageHelper.jsonToObj(requestVO.getRequestData(), Product.class);
+
+			int inserProduct = service.inserProduct(product);
+			if (inserProduct > 0) {
+				responseVO.setResponseMsg(MessageHelper.objToJson(product));
+				responseVO.setResponseType(Constants.RESPONSE_TYPE_SUCCESS);
+			} else {
+				responseVO.setResponseMsg("Producted not inserted");
+				responseVO.setResponseType(Constants.RESPONSE_TYPE_ERROR);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return responseVO;
+
+	}
+	
+	
+	@GET
+	public ResponseVO getProduct(RequestVO requestVO) {
+
+		log.info("Method: getProduct()");
+		ResponseVO responseVO = new ResponseVO();
+		try {
+			ProductService service = getProductServer();
+			String requestURI = requestVO.getRequestURI();
+			String[] split = requestURI.split("/");
+			
+ 
+			List<Product> products = service.getAllProduct();
+			
+ 			if (products.size() > 0) {
+				responseVO.setResponseMsg(MessageHelper.objToJson(products));
+				responseVO.setResponseType(Constants.RESPONSE_TYPE_SUCCESS);
+			} else {
+				responseVO.setResponseMsg("Producted not found");
+				responseVO.setResponseType(Constants.RESPONSE_TYPE_ERROR);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return responseVO;
+
+	}
+
+	private ProductService getProductServer() {
+
+		return new ProductService();
+	}
+
+}

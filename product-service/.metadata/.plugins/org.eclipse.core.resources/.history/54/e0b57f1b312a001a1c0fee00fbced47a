@@ -1,0 +1,9 @@
+package com.radhe.product;
+
+import java.util.HashMap;
+
+public class ControllerRepository {
+	
+Map<String,Controller> controller=new HashMap() 
+
+}

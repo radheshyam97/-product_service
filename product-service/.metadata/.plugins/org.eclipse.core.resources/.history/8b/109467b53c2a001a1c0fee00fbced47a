@@ -1,0 +1,8 @@
+package com.radhe.product.model;
+
+public class ResponseVO {
+
+	private int responseType;
+	private int responseMsg;
+	private Object responseObject;
+}

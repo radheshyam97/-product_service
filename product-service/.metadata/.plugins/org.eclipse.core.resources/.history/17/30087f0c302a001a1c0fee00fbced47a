@@ -1,0 +1,10 @@
+package com.radhe.product.logger;
+
+public class AppLogger {
+
+	Class<T> clazz;
+
+	public AppLogger(Class<T> clazz) {
+		this.clazz = clazz;
+	}
+}

@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Sun Dec 29 21:50:59 IST 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.1.0 - (1808820): instance a816c00e-016f-5275-f23b-00000a542170 
+on database directory /home/radhe/workspaces/product-service/product_service/product_db with class loader sun.misc.Launcher$AppClassLoader@4e0e2f2a 
+Loaded from file:/home/radhe/.m2/repository/org/apache/derby/derby/10.14.1.0/derby-10.14.1.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_192-b12
+user.dir=/home/radhe/workspaces/product-service/product_service
+os.name=Linux
+os.arch=amd64
+os.version=4.15.0-72-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

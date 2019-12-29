@@ -1,0 +1,35 @@
+package com.radhe.product.services;
+
+import java.sql.Connection;
+
+import com.radhe.product.DBUtil;
+import com.radhe.product.dao.ProductDAO;
+import com.radhe.product.model.Product;
+
+public class ProductService {
+
+	public int inserProduct(Product product) throws Exception {
+
+		ProductDAO dao = getDAO();
+		int insertProduct = dao.insertProduct(product);
+		if (insertProduct == 1) {
+			dao.commit();
+			System.out.println("product inserted successfylly");
+
+		} else {
+			System.out.println("product insertion failed");
+			dao.rollback();
+		}
+		dao.commit();
+		dao.close();
+		return insertProduct;
+
+	}
+
+	private ProductDAO getDAO() throws Exception {
+
+		Connection conn = DBUtil.getConnection();
+		return new ProductDAO(conn);
+	}
+
+}

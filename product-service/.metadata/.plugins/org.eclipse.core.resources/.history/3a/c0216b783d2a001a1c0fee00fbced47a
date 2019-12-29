@@ -1,0 +1,12 @@
+package com.test;
+
+public class Person {
+
+	protected String name;
+	
+	public void printSal() {
+		
+		System.out.println("sal: "+sal);
+	} 
+	
+}

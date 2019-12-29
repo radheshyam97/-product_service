@@ -1,0 +1,21 @@
+package com.radhe.product;
+
+import com.radhe.product.logger.AppLogger;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+ 
+	private static AppLogger log=AppLogger.getLogger();
+    public static void main( String[] args )
+    {
+    	log.debug("### START APP ###");
+    	
+    	registerController();
+    	
+
+    }
+}

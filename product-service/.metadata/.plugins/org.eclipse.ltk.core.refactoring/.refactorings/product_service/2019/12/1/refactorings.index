@@ -1,0 +1,10 @@
+1577615119188	Extract method 'insetProductTest'
+1577616782322	Rename local variable 'insertCount'
+1577617094186	Rename local variable 'insertProduct'
+1577619956517	Rename type 'EmployeeHttpRequestHandler'
+1577621544082	Extract method 'startServer'
+1577623658495	Rename type 'ProuctController'
+1577624992777	Delete element
+1577626478463	Extract method 'getMethod'
+1577629208503	Extract method 'callMethod'
+1577634723608	Delete element

@@ -1,0 +1,5 @@
+package com.radhe.product.controller;
+
+public interface Controller {
+
+}

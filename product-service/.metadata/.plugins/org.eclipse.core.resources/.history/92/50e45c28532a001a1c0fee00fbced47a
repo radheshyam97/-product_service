@@ -1,0 +1,6 @@
+package com.radhe.product.model.anno;
+
+
+public enum POST {
+
+}

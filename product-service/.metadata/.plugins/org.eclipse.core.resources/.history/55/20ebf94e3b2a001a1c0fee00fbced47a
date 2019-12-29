@@ -1,0 +1,14 @@
+package com.radhe.product.constants;
+
+public class Constants {
+	
+	//HTTP Method 
+	public static final String HTTP_METHOD_GET="GET";
+	public static final String HTTP_METHOD_GET="POST";
+	public static final String HTTP_METHOD_GET="PUT";
+	public static final String HTTP_METHOD_GET="DELETE";
+	
+	
+	
+	
+}

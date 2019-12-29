@@ -1,0 +1,40 @@
+package com.radhe.product.controller.bizz;
+
+import com.radhe.product.controller.GenericController;
+import com.radhe.product.logger.AppLogger;
+import com.radhe.product.model.Product;
+import com.radhe.product.model.RequestVO;
+import com.radhe.product.model.ResponseVO;
+import com.radhe.product.model.anno.GET;
+import com.radhe.product.services.ProductService;
+import com.radhe.product.util.MessageHelper;
+
+public class ProductController extends GenericController {
+
+	private static AppLogger log = AppLogger.getLogger(ProductController.class);
+
+	GET
+	public ResponseVO insertProduct(RequestVO requestVO) {
+		
+		log.info("Method: insertProduct()");
+		ResponseVO responseVO=new ResponseVO();
+		try {
+			ProductService service=getProductServer();
+ 			 Product product = MessageHelper.jsonToObj(responseVO.getResponseMsg(), Product.class);
+			
+			int inserProduct = service.inserProduct(product);
+		
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return responseVO;
+
+	}
+
+	private ProductService getProductServer() {
+
+ 		return new ProductService();
+	}
+
+}

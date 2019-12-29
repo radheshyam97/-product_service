@@ -1,0 +1,29 @@
+package com.radhe.product;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DBUtil {
+
+	public static void main(String[] args) throws Exception {
+
+		System.out.println("Main START");
+		testConnection();
+		
+		 
+		System.out.println("Main END");
+	}
+
+	private static void testConnection() throws Exception {
+
+		// load the driver
+
+		
+		Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+		Connection connection = DriverManager.getConnection("jdbc:derby:product_db;create=true");
+		System.out.println("isClosed: " + connection.isClosed());
+		//
+		// Class.forName(“org.apache.derby.jdbc.EmbeddedDriver”);
+		// Connection c = DriverManager.getConnection("jdbc:derby:testdb1;create=true”);
+	}
+}

@@ -1,0 +1,38 @@
+package com.radhe.product;
+
+import com.radhe.product.logger.AppLogger;
+import com.radhe.product.controller.ProuctController;
+
+/**
+ * Hello world!
+ *
+ */
+public class App {
+
+	private static AppLogger log = AppLogger.getLogger(App.class);
+
+	public static void main(String[] args) {
+		log.debug("### START APP ###");
+
+		registerController();
+		
+		startHTTPServer()
+
+	}
+
+	private static void startHTTPServer() {
+
+		log.info("### START HTTP SERVER START ###");
+
+		log.info("### START HTTP SERVER END ###");
+
+	}
+
+	private static void registerController() {
+		log.debug("### REGISTER CONTROLLERS START ###");
+		ControllerRepository controllerRepository = new ControllerRepository();
+		controllerRepository.registerController("product", new ProuctController());
+		log.debug("### REGISTER CONTROLLERS END ###");
+
+	}
+}

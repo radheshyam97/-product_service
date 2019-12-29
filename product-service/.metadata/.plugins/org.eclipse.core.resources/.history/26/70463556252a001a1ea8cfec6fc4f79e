@@ -1,0 +1,17 @@
+package com.radhe.product.util;
+
+public class ServiceTest {
+
+	
+	public static void main(String[] args) {
+	
+		System.out.println("START");
+		
+		
+		
+		System.out.println("END");
+		
+	}
+	
+	
+}

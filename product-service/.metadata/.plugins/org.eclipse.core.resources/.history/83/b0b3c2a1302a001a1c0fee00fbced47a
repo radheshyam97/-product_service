@@ -1,0 +1,47 @@
+package com.radhe.product.logger;
+
+public class AppLogger<T> {
+
+	Class<T> clazz;
+
+	public AppLogger(Class<T> clazz) {
+		this.clazz = clazz;
+	}
+
+	public void debug(String msg) {
+		
+		msg=formatMsg(msg);
+	
+		System.out.println(msg);
+	}
+
+	private String formatMsg(String msg) {
+		return clazz.getName() +" "+msg;
+	}
+
+	public void info(String msg) {
+		System.out.println(msg);
+	}
+
+	public void error(String msg) {
+		System.out.println(msg);
+	}
+
+	public void debug(String msg, Throwable t) {
+		System.out.println(msg);
+		t.printStackTrace();
+
+	}
+
+	public void info(String msg, Throwable t) {
+		System.out.println(msg);
+		t.printStackTrace();
+
+	}
+
+	public void error(String msg, Throwable t) {
+		System.out.println(msg);
+		t.printStackTrace();
+
+	}
+}

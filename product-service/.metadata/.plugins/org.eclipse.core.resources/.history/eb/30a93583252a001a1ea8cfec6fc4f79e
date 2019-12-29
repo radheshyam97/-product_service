@@ -1,0 +1,23 @@
+package com.radhe.product.util;
+
+import com.radhe.product.model.Product;
+import com.radhe.product.services.ProductService;
+
+public class ServiceTest {
+
+	public static void main(String[] args) throws Exception {
+
+		System.out.println("START");
+
+		ProductService productService = new ProductService();
+		Product product = new Product();
+		product.setProdName("Bullet STD 350");
+		product.setProdPrice(150000);
+
+		productService.inserProduct(product);
+
+		System.out.println("END");
+
+	}
+
+}

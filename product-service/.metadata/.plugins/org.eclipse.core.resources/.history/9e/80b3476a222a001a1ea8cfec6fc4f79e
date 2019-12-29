@@ -1,0 +1,68 @@
+package com.radhe.product;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+public class DBUtil {
+
+	public static void main(String[] args) throws Exception {
+
+		System.out.println("Main START");
+		testConnection();
+		String createProdTableSQL="CREATE TABLE product_tbl ( prod_id INT NOT NULL GENERATED ALWAYS AS IDENTITY, prod_name VARCHAR(100), price FLOAT(10,2) );";
+cre
+		
+		System.out.println("Main END");
+	}
+
+	private static void testConnection() throws Exception {
+
+		// load the driver
+
+		Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+		Connection connection = DriverManager.getConnection("jdbc:derby:product_db;create=true");
+		System.out.println("isClosed: " + connection.isClosed());
+	}
+
+	public static boolean createTable(String sql, Connection conn) {
+
+		Statement stmt = null;
+		boolean createdTable = true;
+		try {
+			// Creating the Statement object
+			stmt = conn.createStatement();
+
+			// Executing the query
+			String query = "CREATE TABLE Employees( " + "Id INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+					+ "Name VARCHAR(255), " + "Salary INT NOT NULL, " + "Location VARCHAR(255), " + "PRIMARY KEY (Id))";
+			stmt.execute(query);
+			System.out.println("Table created");
+		} catch (Exception ex) {
+			System.out.println("Exception occurd while creating table " + ex.getMessage());
+			ex.printStackTrace();
+			createdTable = false;
+		} catch (Throwable t) {
+
+			System.out.println("Throwable occurd while creating table: " + t.getMessage());
+			t.printStackTrace();
+			createdTable = false;
+
+		} finally {
+
+			if (stmt != null) {
+
+				try {
+					stmt.close();
+				} catch (Exception ex) {
+					System.out.println("Exception occurd in closing the Statement: " + ex.getMessage());
+					ex.printStackTrace();
+
+				}
+			}
+		}
+
+		return createdTable;
+
+	}
+}

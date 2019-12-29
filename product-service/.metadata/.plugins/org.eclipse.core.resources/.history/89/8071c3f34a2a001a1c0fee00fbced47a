@@ -1,0 +1,18 @@
+package com.radhe.product.util;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+public class MessageHelper {
+
+	public static Object jsonToObj(String data, T clazz) {
+		ObjectMapper mapper = new ObjectMapper();
+
+		mapper.readValue(data, clazz);
+	}
+
+	public static <T> T objTojson(T t) {
+		return t;
+
+	}
+
+}

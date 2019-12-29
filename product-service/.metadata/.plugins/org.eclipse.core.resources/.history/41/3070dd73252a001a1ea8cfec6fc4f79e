@@ -1,0 +1,21 @@
+package com.radhe.product.util;
+
+import com.radhe.product.services.ProductService;
+
+public class ServiceTest {
+
+	
+	public static void main(String[] args) {
+	
+		System.out.println("START");
+		
+		ProductService productService=new ProductService();
+		productService.inserProduct(product);
+		
+		
+		System.out.println("END");
+		
+	}
+	
+	
+}

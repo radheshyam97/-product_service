@@ -1,0 +1,23 @@
+package com.radhe.product.services;
+
+import java.sql.Connection;
+
+import com.radhe.product.DBUtil;
+import com.radhe.product.dao.ProductDAO;
+import com.radhe.product.model.Product;
+
+public class ProductService {
+
+	public int inserProduct(Product product) throws Exception {
+
+		ProductDAO dao = getDAO();
+
+	}
+
+	private ProductDAO getDAO() throws Exception {
+
+		Connection conn = DBUtil.getConnection();
+		return new ProductDAO(conn);
+	}
+
+}
